@@ -1,0 +1,18 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="Typos">Lab1</string>
+    <string name="content">logo</string>
+    <string name="firebase">Firebase</string>
+    <string name="login_with_email">Login With Email</string>
+    <string name="login_with_phone_number">Login With Phone Number</string>
+    <string name="username">Username:</string>
+    <string name="password">Password:</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="logout">Logout</string>
+    <string name="get_otp">Get OTP</string>
+    <string name="dont_have_an_account_sign_up">Don\'t have a account?<b>Sign Up</b> </string>
+    <string name="forgot_password"><u>Forgot password ?</u></string>
+    <string name="phone_number">Phone number:</string>
+    <string name="otp">OTP:</string>
+    <string name="dang_ky">Đăng ký</string>
+</resources>
