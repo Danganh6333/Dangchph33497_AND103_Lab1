@@ -84,7 +84,7 @@ public class WithPhoneNumber extends AppCompatActivity {
         Log.d("PhoneNumber",phoneNumber);
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
-                        .setPhoneNumber("+1 "+phoneNumber)
+                        .setPhoneNumber("+84 "+phoneNumber)
                         .setTimeout(60L, TimeUnit.SECONDS)
                         .setActivity(this)
                         .setCallbacks(mCallbacks)
