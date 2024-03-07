@@ -1,7 +1,6 @@
 package com.dangchph33497.fpoly.lab1.List;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class DTO {
     private String name;

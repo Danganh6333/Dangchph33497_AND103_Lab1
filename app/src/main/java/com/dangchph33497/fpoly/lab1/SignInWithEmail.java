@@ -11,9 +11,6 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,7 +24,6 @@ public class SignInWithEmail extends AppCompatActivity {
     private  com.google.android.material.button.MaterialButton btnLogin;
     private TextView tvSignUp,tvResetPassword;
     private static final String TAG = "EmailPassword";
-    String email,password;
     @Override
     public void onStart() {
         super.onStart();

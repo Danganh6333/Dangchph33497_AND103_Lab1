@@ -29,8 +29,6 @@ public class Home extends AppCompatActivity {
     FirebaseFirestore db;
     RecyclerView rc;
     RecycleViewAdapter adapter;
-    DTO dto;
-    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
