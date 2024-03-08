@@ -13,6 +13,15 @@ public class DTO {
 
     public DTO() {
     }
+
+    public DTO(String name, String state, String country, boolean capital, Integer population) {
+        this.name = name;
+        this.state = state;
+        this.country = country;
+        this.capital = capital;
+        this.population = population;
+    }
+
     public DTO(String name, String state, String country, boolean capital, Integer population, ArrayList<String> regions) {
         this.name = name;
         this.state = state;
