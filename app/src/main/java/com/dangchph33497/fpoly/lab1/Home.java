@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 
@@ -28,7 +27,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,7 +38,6 @@ public class Home extends AppCompatActivity {
     FirebaseFirestore db;
     RecyclerView rc;
     RecycleViewAdapter adapter;
-    Context context;
     com.google.android.material.button.MaterialButton btnAdd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +52,7 @@ public class Home extends AppCompatActivity {
 
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ShowDialogAddBox();
-            }
-        });
+        btnAdd.setOnClickListener(v -> ShowDialogAddBox());
 
         firestore.collection("cities").get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
@@ -111,46 +103,43 @@ public class Home extends AppCompatActivity {
         RadioButton radioNotCapital = view.findViewById(R.id.radioNotCapital);
         EditText edtRegions = view.findViewById(R.id.edtRegions);
         com.google.android.material.button.MaterialButton btnAdd = view.findViewById(R.id.btnAdd);
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = edtName.getText().toString();
-                String state = edtState.getText().toString();
-                String country = edtCountry.getText().toString();
-                int population = Integer.parseInt(edtPopulation.getText().toString());
-                boolean capital = radioCapital.isChecked();
+        btnAdd.setOnClickListener(v -> {
+            String name = edtName.getText().toString();
+            String state = edtState.getText().toString();
+            String country = edtCountry.getText().toString();
+            int population = Integer.parseInt(edtPopulation.getText().toString());
+            boolean capital = radioCapital.isChecked();
 
-                List<String> regions = Arrays.asList(edtRegions.getText().toString().split(","));
+            List<String> regions = Arrays.asList(edtRegions.getText().toString().split(","));
 
-                if (name.isEmpty() || state.isEmpty() || country.isEmpty() || population == 0) {
-                    Toast.makeText(Home.this, "Trống Dữ Liệu", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                Map<String, Object> cityData = new HashMap<>();
-                cityData.put("name", name);
-                cityData.put("state", state);
-                cityData.put("country", country);
-                cityData.put("capital", capital);
-                cityData.put("population", population);
-                cityData.put("regions", regions);
-
-                db.collection("cities").add(cityData)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Log.d("HomeActivity", "DocumentSnapshot added with ID: " + documentReference.getId());
-                                dialog.dismiss();
-                                loadData();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w("HomeActivity", "Error adding document", e);
-                            }
-                        });
+            if (name.isEmpty() || state.isEmpty() || country.isEmpty() || population == 0) {
+                Toast.makeText(Home.this, "Trống Dữ Liệu", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            Map<String, Object> cityData = new HashMap<>();
+            cityData.put("name", name);
+            cityData.put("state", state);
+            cityData.put("country", country);
+            cityData.put("capital", capital);
+            cityData.put("population", population);
+            cityData.put("regions", regions);
+
+            db.collection("cities").add(cityData)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Log.d("HomeActivity", "DocumentSnapshot added with ID: " + documentReference.getId());
+                            dialog.dismiss();
+                            loadData();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("HomeActivity", "Error adding document", e);
+                        }
+                    });
         });
         dialog.show();
     }
